@@ -68,10 +68,10 @@ module.exports = {
     path: path.resolve(__dirname, `../public/${client}`)
   },
   resolve: {
-    extensions: ['.web.js', '.js', '.web.jsx', '.jsx', '.web.json', '.json'], 
+    extensions: ['.web.js', '.js', '.web.jsx', '.jsx', '.web.json', '.json'],
     alias: {
       '~': path.resolve(__dirname, `../${client}`),
-      'react-native$': 'react-native-web',
+      'react-native$': 'react-native-web'
     }
   },
   plugins: [
@@ -96,17 +96,17 @@ module.exports = {
         test: /\.(js|jsx|mjs)$/,
         include: [
           // 这里编写需要预先 babel 的项目
-          /node_modules\/react-native-/,
-          /node_modules\/react-native-web/,
+          // /node_modules\/react-native-/,
+          // /node_modules\/react-native-web/,
           // /node_modules\/react-navigation/,
         ],
         loader: require.resolve('babel-loader'),
         options: {
-          compact: true,
-        },
+          compact: true
+        }
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx|mjs)$/,
         // exclude: /node_modules/,
         exclude: function(path) {
           // 路径中含有 node_modules 的就不去解析。
@@ -117,18 +117,18 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           babelrc: false,
+          comments: false,
           presets: [
             'react-native',
             'stage-0',
             [
               'env',
               {
-                modules: false,
                 targets: {
-                  browsers: ['last 2 versions', 'safari >= 7'],
-                  node: 'current',
-                  useBuiltIns: true
-                }
+                  chrome: 48
+                },
+                modules: false,
+                loose: true
               }
             ]
           ],
@@ -186,7 +186,7 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: ['file-loader']
-      },
+      }
     ]
   },
   watchOptions: {

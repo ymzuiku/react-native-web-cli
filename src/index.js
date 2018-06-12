@@ -1,33 +1,27 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import platformRender from './utils/platformRender';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-import { imgs } from './sources';
+import { View, Text, StyleSheet } from 'react-native';
 import globalStore from './utils/globalStore';
+import {
+  RootRouter,
+} from 'react-router-hash-history';
 
 class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start on!</Text>
-        <ImageBackground
-          source={imgs.test}
-          style={{
-            width: 50,
-            height: 50
-          }}
-        />
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <RootRouter>
+        <View style={ssc.container}>
+          <Text>Hello React-Native-Web-Cli</Text>
+        </View>
+      </RootRouter>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const ssc = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
   }

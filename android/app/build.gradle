@@ -98,7 +98,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.reactnativewebcli"
+        applicationId "com.react-native-web-cli"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

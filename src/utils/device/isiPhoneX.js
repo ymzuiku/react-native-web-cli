@@ -23,4 +23,4 @@ function isIphoneXWeb() {
 export const isWeb = Platform.OS === 'web';
 export const isIos = Platform.OS === 'ios';
 export const isAndroid = Platform.OS === 'android';
-export const isIPhoneX = isWeb ? isIphoneXWeb() : isIphoneXNative;
+export const isIPhoneX = isWeb ? isIphoneXWeb() : isIphoneXNative();
