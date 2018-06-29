@@ -50,7 +50,7 @@ console.log(`http://${nowHost}:${port}/`);
 
 module.exports = merge(webpackDefault, {
   // devtool: 'inline-source-map',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   devServer: {
     host: nowHost,
     port: port,

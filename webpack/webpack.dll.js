@@ -43,6 +43,7 @@ module.exports = {
         include: [
           // 这里编写需要预先 babel 的项目
           /node_modules\/react-native-/,
+          /node_modules\/react-router-hash-history/,
           // /node_modules\/react-navigation/,
         ],
         loader: require.resolve('babel-loader'),

@@ -10,14 +10,14 @@
       "react-native-web"
     ],
     "src": [
-      "react-motion",
       "react-native-tab-view",
       "react-native-device-info",
-      "react-router-hash-history",
       "redux",
       "react-redux",
       "redux-thunk",
       "redux-logger",
+      "react-router",
+      "history",
       "immutable",
       "lodash"
     ]
@@ -29,7 +29,7 @@
     "ios-x": "react-native run-ios --simulator \"iPhone X\"",
     "web": "webpack-dev-server --config webpack/webpack.dev.js",
     "web-open": "webpack-dev-server --config webpack/webpack.dev.js --open",
-    "web-dll": "webpack --progress --config webpack/webpack.dll.js",
+    "dll": "webpack --progress --config webpack/webpack.dll.js",
     "build": "webpack --progress --config webpack/webpack.prod.js",
     "test": "jest"
   },
@@ -52,7 +52,8 @@
     "react-native-web": "^0.8.3",
     "react-navigation": "^2.3.0",
     "react-redux": "^5.0.7",
-    "react-router-hash-history": "git+https://github.com/ymzuiku/react-router-hash-history.git",
+    "react-router": "^4.2.0",
+    "history": "^4.7.2",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"

@@ -99,6 +99,7 @@ module.exports = {
           // /node_modules\/react-native-/,
           // /node_modules\/react-native-web/,
           // /node_modules\/react-navigation/,
+          /node_modules\/react-router-hash-history/,
         ],
         loader: require.resolve('babel-loader'),
         options: {

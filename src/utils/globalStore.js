@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { Map } from 'immutable';
+import device from './device'
 
 // 设定logger以配合Immutable
 const logger = createLogger({
@@ -48,16 +49,32 @@ if (
   !(window.__REDUX_DEVTOOLS_EXTENSION__ || window.__REDUX_DEVTOOLS_EXTENSION__)
 ) {
   // 如果设备未安装插件调试
-  globalStore = createStore(reducer, applyMiddleware(thunk, logger));
+  if (device.isDev) {
+    globalStore = createStore(reducer, applyMiddleware(thunk, logger));
+  } else {
+    globalStore = createStore(reducer, applyMiddleware(thunk));
+  }
+  
 } else {
-  globalStore = createStore(
-    reducer,
-    compose(
-      applyMiddleware(thunk, logger),
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-  );
+  if (device.isDev) {
+    globalStore = createStore(
+      reducer,
+      compose(
+        applyMiddleware(thunk, logger),
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__()
+      )
+    );
+  } else {
+    globalStore = createStore(
+      reducer,
+      compose(
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__()
+      )
+    );
+  }
 }
 
 export default globalStore;

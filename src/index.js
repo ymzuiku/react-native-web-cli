@@ -1,18 +1,91 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import _ from 'lodash';
 import platformRender from './utils/platformRender';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList
+} from 'react-native';
 import globalStore from './utils/globalStore';
 import {
   RootRouter,
-} from 'react-router-hash-history';
+  history,
+  NaviRoute,
+  hashChange
+} from './utils/ReactRouterHashHistory';
+
+
+class Home extends React.PureComponent {
+  data = _.range(999).map(i => {
+    return {
+      key: 'fl' + i,
+      index: i
+    };
+  });
+  jumpSub = () => {
+    history.push('/home/sub/');
+  };
+  renderItem = ({ key, index }) => {
+    return (
+      <View key={key} style={ssc.center}>
+        <Text>hello {index}</Text>
+        <TouchableOpacity onPress={this.jumpSub}>
+          <Text>go /home/sub</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+  render() {
+    return <FlatList data={this.data} renderItem={this.renderItem} />;
+  }
+}
+
+class Sub extends React.PureComponent {
+  data = _.range(999).map(i => {
+    return {
+      key: 'flsub' + i,
+      index: i
+    };
+  });
+  jumpBack = () => {
+    history.goBack();
+  };
+  renderItem = ({ key, index }) => {
+    return (
+      <View key={key} style={ssc.center}>
+        <Text>sub {index}</Text>
+        <TouchableOpacity onPress={this.jumpBack}>
+          <Text>go /goback</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+  render() {
+    return <FlatList data={this.data} renderItem={this.renderItem} />;
+  }
+}
 
 class App extends React.Component {
+  componentDidMount() {
+    hashChange();
+  }
+  jumpHome = () => {
+    history.push('/home/');
+  };
   render() {
     return (
       <RootRouter>
         <View style={ssc.container}>
-          <Text>Hello React-Native-Web-Cli</Text>
+          <NaviRoute root={true} path="/">
+            <TouchableOpacity style={ssc.center} onPress={this.jumpHome}>
+              <Text>go /home</Text>
+            </TouchableOpacity>
+          </NaviRoute>
+          <NaviRoute path="/home/*" component={Home} />
+          <NaviRoute path="/home/sub/*" component={Sub} />
         </View>
       </RootRouter>
     );
@@ -22,8 +95,15 @@ class App extends React.Component {
 const ssc = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    width: '100%',
+    height: '100%'
+  },
+  center: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
