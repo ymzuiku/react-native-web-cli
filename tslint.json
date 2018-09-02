@@ -1,0 +1,16 @@
+{
+  "defaultSeverity": "error",
+  "extends": [],
+  "jsRules": {
+    "jsx-wrap-multiline": false
+  },
+  "rules": {
+    "no-unused-expression": true,
+    "no-duplicate-variable": true,
+    "no-unused-variable": true,
+    "curly": true,
+    "class-name": true,
+    "triple-equals": true
+  },
+  "rulesDirectory": []
+}
