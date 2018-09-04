@@ -82,7 +82,9 @@ class Tip {
     };
     this.resolve = {
       extensions: [
+        '.web.tsx',
         '.tsx',
+        '.web.ts',
         '.ts',
         '.web.js',
         '.mjs',
@@ -108,6 +110,9 @@ class Tip {
         babelLoaderBuild: {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
+          // include: [
+          //   /node_modules\/react-navigation/,
+          // ],
           use: {
             loader: 'babel-loader',
             options: {
