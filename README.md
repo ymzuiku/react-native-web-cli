@@ -1,10 +1,17 @@
 ## Install
 ```sh
-npm i -g react-native-web-cli
+npm i -g rnw
 ```
 
-## Use
+## Crerate project
 
 ```sh
-react-native-web-cli HelloReactNativeWeb
+rnw HelloReactNativeWeb
+```
+
+## Run project
+
+```sh
+yarn web # run react
+yarn ios # run react-native of ios
 ```

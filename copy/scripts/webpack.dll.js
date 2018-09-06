@@ -29,5 +29,5 @@ module.exports = {
       tip.module.rules.babelLoaderDll,
     ],
   },
-  plugins: [tip.plugins.FastUglifyJsPluginProd, tip.plugins.DllPlugin],
+  plugins: [tip.plugins.FastUglifyJsPluginDll, tip.plugins.DllPlugin],
 };

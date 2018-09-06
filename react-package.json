@@ -1,29 +1,35 @@
 {
-  "name": "base-app",
+  "name": "name",
   "version": "0.0.1",
   "private": true,
   "dll": [
     "react",
     "react-dom",
     "react-art",
-    "react-native-web"
+    "react-native-web",
+    "redux",
+    "redux-thunk",
+    "react-redux"
   ],
   "scripts": {
-    "web": "webpack-dev-server --config scripts/webpack.config.js",
-    "dll": "webpack --progress --config scripts/webpack.dll.js",
-    "build": "prod=1 webpack -config scripts/webpack.config.js",
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "dll": "webpack --progress --config scripts/webpack.dll.js",
+    "web-build": "prod=1 webpack -config scripts/webpack.config.js",
+    "web": "webpack-dev-server --config scripts/webpack.config.js",
     "ios": "react-native run-ios --simulator=\"iPhone X\"",
     "android": "react-native run-android",
     "test": "jest"
   },
   "dependencies": {
+    "@types/redux": "^3.6.0",
     "react": "^16.4.2",
     "react-art": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-native": "0.56.0",
     "react-native-web": "^0.8.9",
-    "react-navigation": "^2.12.1"
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -70,7 +76,7 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.16.1",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.7"
   },
   "jest": {
     "preset": "react-native",

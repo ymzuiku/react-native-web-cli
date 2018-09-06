@@ -1,6 +1,6 @@
 {
-  "name": "react-native-web-typescript-cli",
-  "version": "0.2.5",
+  "name": "rnw",
+  "version": "0.0.1",
   "main": "index.js",
   "repository": "git@github.com:ymzuiku/react-native-web-cli.git",
   "author": "pillar <pillar.liang@bindo.com>",
@@ -10,6 +10,6 @@
     "shelljs": "^0.8.2"
   },
   "bin": {
-    "react-native-web-typescript-cli": "index.js"
+    "rnw": "index.js"
   }
 }

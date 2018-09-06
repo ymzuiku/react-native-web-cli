@@ -49,9 +49,10 @@ package.name = projectName.toLowerCase();
 fs.writeJSONSync(cd(projectPath, 'package.json'), package, { spaces: 2 });
 
 // 安装node依赖
-shell.exec('yarn install');
+// shell.exec(`cd ${projectName}`);
+shell.exec(`cd ${projectName} && yarn install`);
 console.log('please waiting...');
-shell.exec('yarn dll');
+shell.exec(`cd ${projectName} && yarn dll`);
 console.log('please waiting...');
 
 // 完成

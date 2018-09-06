@@ -15,7 +15,7 @@ class Tip {
       output: cd(rootPath, 'build'),
       public: cd(rootPath, 'public'),
       package: cd(rootPath, 'package.json'),
-      entry: cd(rootPath, 'src/index.web.tsx'),
+      entry: cd(rootPath, 'index.web.js'),
       dll: cd(rootPath, 'public/dll'),
       template: cd(rootPath, 'public/index.html'),
     };
@@ -330,6 +330,15 @@ class Tip {
         compress: false,
         debug: true,
         cache: true,
+        sourceMap: true,
+        cacheFolder: cd(this.paths.root, './node_modules/.cache'),
+      }),
+      FastUglifyJsPluginDll: new FastUglifyJsPlugin({
+        compress: {
+          warnings: false,
+        },
+        debug: true,
+        cache: false,
         sourceMap: true,
         cacheFolder: cd(this.paths.root, './node_modules/.cache'),
       }),
