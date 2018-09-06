@@ -1,4 +1,3 @@
-import React from 'react';
 import { createMemoryHistory } from 'history';
 import {
   Route,
@@ -61,8 +60,8 @@ history.listen(e => {
 //监听触发操作
 function hashChange() {
   try {
-    let pathname = window.location.href.split(position)[1];
-    if (pathname !== nowHistory.pathname) {
+    let lastPathname = window.location.href.split(position)[1];
+    if (lastPathname !== nowHistory.pathname) {
       const pathname = history.entries[history.length - 2].pathname;
       for (let i = 0; i < history.length; i++) {
         if (history.index > 1) {
@@ -94,7 +93,7 @@ try {
       document['documentMode'] === 8)
   ) {
     // 浏览器支持 onhashchange 事件
-    window.onhashchange = hashChange; // TODO，对应新的hash执行的操作函数
+    window.onhashchange = hashChange;
   } else {
     let oldHash = window.location.hash;
 

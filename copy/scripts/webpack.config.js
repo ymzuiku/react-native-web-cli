@@ -1,20 +1,26 @@
 const fs = require('fs-extra');
-const cd = require('path').resolve;
 const tip = require('./webpack.tip')();
-const isHaveDll = fs.existsSync(cd(tip.paths.dll, 'dll.js'));
+const resolve = require('path').resolve;
+const webpack = require('webpack');
+const isHaveDll = fs.existsSync(resolve(tip.paths.dll, 'dll.js'));
+
+tip.isDev = tip.paths.output;
 
 module.exports = {
   target: 'web',
+  // bail: tip.isDev ? false : true,
   mode: tip.isDev ? tip.mode.development : tip.mode.production,
   devtool: tip.isDev ? tip.devtool.sourceMap : tip.devtool.none,
-  stats: 'errors-only',
+  // stats: 'errors-only',
   entry: {
-    main: tip.paths.entry,
+    index: tip.paths.entry,
   },
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
     path: tip.paths.output,
+    // pathinfo: true,
+    filename: '[name]_[hash:8].js',
+    chunkFilename: '[name].chunk.js',
+    // publicPath: '/',
   },
   resolve: {
     extensions: tip.resolve.extensions,
@@ -24,6 +30,7 @@ module.exports = {
   externals: {},
   module: {
     rules: [
+      tip.module.rules.eslint,
       tip.module.rules.cssLoader,
       tip.module.rules.stylusLoader,
       tip.module.rules.urlLoader,

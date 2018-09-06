@@ -16,17 +16,19 @@ function goBack() {
   history.goBack();
 }
 
-let NaviBar = ({
-  style = {},
-  leftTitle = '',
-  title = '',
-  middleButton = () => {},
-  leftButton = () => {},
-  rightButton = () => {},
-  isIPhoneX = false,
-  root = false,
-  children = [],
-}) => {};
+const IProps = {
+  style: {},
+  leftTitle: '',
+  title: '',
+  middleButton: () => {},
+  leftButton: () => {},
+  rightButton: () => {},
+  isIPhoneX: false,
+  root: false,
+  children: [],
+};
+
+let NaviBar = (v = IProps) => <View />;
 
 NaviBar = class extends React.PureComponent {
   historyAddListenID = 0;

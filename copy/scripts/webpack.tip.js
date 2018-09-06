@@ -1,25 +1,30 @@
-const cd = require('path').resolve;
+const resolve = require('path').resolve;
+const fs = require('fs-extra');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FastUglifyJsPlugin = require('fast-uglifyjs-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const isDev = process.env.prod != '1';
+const isDev = process.env.prod !== '1';
 
 class Tip {
   constructor() {
     const rootPath = process.cwd();
     this.paths = {
       root: rootPath,
-      output: cd(rootPath, 'build'),
-      public: cd(rootPath, 'public'),
-      package: cd(rootPath, 'package.json'),
-      entry: cd(rootPath, 'index.web.js'),
-      dll: cd(rootPath, 'public/dll'),
-      template: cd(rootPath, 'public/index.html'),
+      output: resolve(rootPath, 'build'),
+      public: resolve(rootPath, 'public'),
+      package: resolve(rootPath, 'package.json'),
+      entry: resolve(rootPath, 'index.web.js'),
+      src: resolve(rootPath, 'src'),
+      dll: resolve(rootPath, 'public/dll'),
+      template: resolve(rootPath, 'public/index.html'),
     };
     this.isDev = isDev;
+    if (!isDev) {
+      fs.mkdirpSync(this.paths.output);
+    }
     this.tsconfig = {
       compilerOptions: {
         target: 'es3',
@@ -61,7 +66,7 @@ class Tip {
       useLocalIp: true,
       // hot: true, //开启有可能不显示内容
       open: false,
-      progress: true,
+      progress: false,
       openPage: '/',
       allowedHosts: [],
       headers: {},
@@ -99,6 +104,20 @@ class Tip {
     };
     this.module = {
       rules: {
+        eslint: {
+          test: process.env.nolint ? /\.(nolint)$/ : /\.(js|jsx|mjs)$/,
+          enforce: 'pre',
+          use: [
+            {
+              options: {
+                // formatter: eslintFormatter,
+                eslintPath: require.resolve('eslint'),
+              },
+              loader: require.resolve('eslint-loader'),
+            },
+          ],
+          include: this.paths.src,
+        },
         tsLodaer: {
           test: /\.(tsx|ts)?$/,
           loader: 'ts-loader',
@@ -324,14 +343,13 @@ class Tip {
         debug: false,
         cache: false,
         sourceMap: false,
-        cacheFolder: cd(this.paths.root, './node_modules/.cache'),
       }),
       FastUglifyJsPluginDev: new FastUglifyJsPlugin({
         compress: false,
         debug: true,
         cache: true,
         sourceMap: true,
-        cacheFolder: cd(this.paths.root, './node_modules/.cache'),
+        cacheFolder: resolve(this.paths.root, './node_modules/.cache'),
       }),
       FastUglifyJsPluginDll: new FastUglifyJsPlugin({
         compress: {
@@ -340,19 +358,19 @@ class Tip {
         debug: true,
         cache: false,
         sourceMap: true,
-        cacheFolder: cd(this.paths.root, './node_modules/.cache'),
+        cacheFolder: resolve(this.paths.root, './node_modules/.cache'),
       }),
       CleanWebpackPlugin: new CleanWebpackPlugin(['*'], {
-        root: cd(this.paths.root, `./build/`),
+        root: resolve(this.paths.root, './build'),
         exclude: ['video'],
         verbose: true,
         dry: false,
       }),
       DllReferencePlugin: new webpack.DllReferencePlugin({
-        manifest: cd(this.paths.dll, 'dll-manifest.json'),
+        manifest: resolve(this.paths.dll, 'dll-manifest.json'),
       }),
       DllPlugin: new webpack.DllPlugin({
-        path: cd(this.paths.dll, 'dll-manifest.json'),
+        path: resolve(this.paths.dll, 'dll-manifest.json'),
         name: 'dll_library',
       }),
       CopyWebpackPlugin: new CopyWebpackPlugin([

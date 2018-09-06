@@ -7,28 +7,23 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 const iw = Dimensions.get('window').width;
 const isWeb = Platform.OS === 'web';
 
-let NaviRoute = ({
-  exact = true,
-  path = '',
-  component = () => {},
-  render = () => {},
-  children = () => {},
-  backgroundColor = '',
-  animed = false,
-  moveOutFix = 0,
-  moveInFix = 0,
-  isShowdown = false,
-  root = false,
-}) => {};
+const IProps = {
+  exact: false,
+  path: '',
+  component: undefined,
+  render: undefined,
+  children: [],
+  backgroundColor: '#fff',
+  animed: true,
+  moveOutFix: 1,
+  moveInFix: 1,
+  root: false,
+};
+
+let NaviRoute = (v = IProps) => <View />;
 
 NaviRoute = class extends React.PureComponent {
-  static defaultProps = {
-    moveOutFix: 1,
-    moveInFix: 1,
-    backgroundColor: '#fff',
-    animed: true,
-    isShowdown: true,
-  };
+  static defaultProps = { ...IProps };
   listen = 0;
   state = {
     nowRoute: false,

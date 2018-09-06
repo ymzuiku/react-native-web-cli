@@ -1,6 +1,6 @@
 const tip = require('./webpack.tip')();
-const package = require(tip.paths.package);
-const dllArray = package.dll || [];
+const packageJSON = require(tip.paths.package);
+const dllArray = packageJSON.dll || [];
 console.log('packing dll: ', dllArray);
 
 module.exports = {
