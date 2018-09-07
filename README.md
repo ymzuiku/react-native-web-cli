@@ -2,6 +2,7 @@
 
 - 一键生成支持 React-Native 和 React-Native-Web 的项目
 - 使用 react-native-cli 创建最新的 react-native 项目
+- 使用 Webpack4 和 babel7 进行 React 的编译
 - 默认配置好 Typescript 环境, 只需要把文件后缀改为 .tsx 即可; Web 端和 Native 端均支持。
 - 使用 WebpackDll 把 package.json 中的 dll 标记过得第三方库进行预先打包，减少平时开发期间的编译时间
 - 内置一个基于 react-router 的跨平台 Navigation 组件
