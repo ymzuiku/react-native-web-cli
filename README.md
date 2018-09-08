@@ -1,5 +1,7 @@
 ## 功能
 
+> 由于 react-native-web 在 react@16.5 中有一个错误的API导致无法使用，所以在 react-native-web 修复之前，react暂时固定在react@16.4.2
+
 - 一键生成支持 React-Native 和 React-Native-Web 的项目
 - 使用 react-native-cli 创建最新的 react-native 项目
 - 使用 Webpack4 和 babel7 进行 React 的编译
