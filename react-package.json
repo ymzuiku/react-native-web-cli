@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "dll": [
-    "whatwg-fetch",
+    "axios",
+    "lodash",
     "react",
     "react-dom",
+    "react-motion",
     "react-art",
     "react-native-web",
     "redux",
@@ -26,18 +28,20 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
+    "lodash": "^4.17.10",
     "react": "16.4.2",
     "react-art": "16.4.2",
     "react-dom": "16.4.2",
+    "react-motion": "^0.5.2",
     "react-native": "0.56.0",
     "react-native-web": "^0.8.9",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0",
-    "whatwg-fetch": "^2.0.4"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

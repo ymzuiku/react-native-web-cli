@@ -51,3 +51,6 @@ yarn ios
 ## 仓库地址
 
 [https://github.com/ymzuiku/react-native-web-cli](https://github.com/ymzuiku/react-native-web-cli)
+
+
+react-native-web-cli is [MIT licensed](./LICENSE).
