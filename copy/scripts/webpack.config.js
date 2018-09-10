@@ -4,23 +4,21 @@ const resolve = require('path').resolve;
 const webpack = require('webpack');
 const isHaveDll = fs.existsSync(resolve(tip.paths.dll, 'dll.js'));
 
-tip.isDev = tip.paths.output;
+const dllPlugin = isHaveDll ? [tip.plugins.DllReferencePlugin] : [];
 
 module.exports = {
   target: 'web',
-  // bail: tip.isDev ? false : true,
   mode: tip.isDev ? tip.mode.development : tip.mode.production,
   devtool: tip.isDev ? tip.devtool.sourceMap : tip.devtool.none,
-  // stats: 'errors-only',
   entry: {
     index: tip.paths.entry,
   },
   output: {
     path: tip.paths.output,
-    // pathinfo: true,
+    pathinfo: true,
     filename: '[name]_[hash:8].js',
     chunkFilename: '[name].chunk.js',
-    // publicPath: '/',
+    publicPath: '/',
   },
   resolve: {
     extensions: tip.resolve.extensions,
@@ -41,17 +39,18 @@ module.exports = {
     ],
   },
   devServer: tip.devServer,
-  plugins: [
-    tip.plugins.ProvidePlugin,
-    tip.plugins.HtmlWebpackPlugin,
-    tip.plugins.DefinePlugin,
-    !tip.isDev ? tip.plugins.FastUglifyJsPluginProd : tip.plugins.null,
-    !tip.isDev ? tip.plugins.HotModuleReplacementPlugin : tip.plugins.null,
-    !tip.isDev ? tip.plugins.CleanWebpackPlugin : tip.plugins.null,
-    !tip.isDev ? tip.plugins.CopyWebpackPlugin : tip.plugins.null,
-    !tip.isDev ? tip.plugins.HashedModuleIdsPlugin : tip.plugins.null,
-    isHaveDll ? tip.plugins.DllReferencePlugin : tip.plugins.null,
-  ],
+  plugins: tip.isDev
+    ? [tip.plugins.HtmlWebpackPlugin, tip.plugins.DefinePlugin, ...dllPlugin]
+    : [
+        tip.plugins.HtmlWebpackPlugin,
+        tip.plugins.DefinePlugin,
+        tip.plugins.FastUglifyJsPluginProd,
+        tip.plugins.HotModuleReplacementPlugin,
+        tip.plugins.CleanWebpackPlugin,
+        tip.plugins.CopyWebpackPlugin,
+        tip.plugins.HashedModuleIdsPlugin,
+        ...dllPlugin,
+      ],
   watchOptions: {
     ignored: /node_modules/,
   },
