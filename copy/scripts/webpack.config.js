@@ -18,7 +18,7 @@ module.exports = {
     pathinfo: true,
     filename: '[name]_[hash:8].js',
     chunkFilename: '[name].chunk.js',
-    publicPath: '/',
+    // publicPath: '/',
   },
   resolve: {
     extensions: tip.resolve.extensions,

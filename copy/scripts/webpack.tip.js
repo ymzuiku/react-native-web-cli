@@ -361,7 +361,7 @@ class Tip {
         cacheFolder: resolve(this.paths.root, './node_modules/.cache'),
       }),
       CleanWebpackPlugin: new CleanWebpackPlugin(['*'], {
-        root: resolve(this.paths.root, './build'),
+        root: this.paths.output,
         exclude: ['video'],
         verbose: true,
         dry: false,
